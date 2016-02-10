@@ -1,0 +1,688 @@
+unit uMain;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListView.Types,
+  FMX.ListView, Data.Bind.EngExt, Fmx.Bind.DBEngExt, uDAO,
+  Data.Bind.Components, FMX.Layouts, uCategorias, System.Actions, FMX.ActnList,
+  FMX.MultiView, FMX.Objects, FMX.ListBox, uListas, System.Rtti,
+  System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.DBScope, FMX.Ani,
+  FMX.ImgList, FMX.Edit, Data.DB, FMX.Effects, FMX.MediaLibrary.Actions,
+  FMX.StdActns, FMX.VirtualKeyboard, FMX.Platform;//, FMX.Helpers.Android, FMX.Platform.Android;
+
+type
+  TfrmMain = class(TForm)
+    lytMain: TLayout;
+    recBackground: TRectangle;
+    MultiView: TMultiView;
+    AnimateDrawer: TFloatAnimation;
+    Rectangle1: TRectangle;
+    Image3: TImage;
+    Glyph2: TGlyph;
+    MultiViewEdicao: TMultiView;
+    ToolBar1: TToolBar;
+    BindingsList1: TBindingsList;
+    lytEdicao: TLayout;
+    listBoxCategorias: TListBox;
+    ListBoxItem1: TListBoxItem;
+    imgFoto: TImage;
+    Layout1: TLayout;
+    edNome: TEdit;
+    LimparNomeNovaCategoria: TClearEditButton;
+    ListBoxItem2: TListBoxItem;
+    spbSalvarNovaCategoria: TSpeedButton;
+    spbCancelar: TSpeedButton;
+    lstPopUpFoto: TListBox;
+    lstitNovaFoto: TListBoxItem;
+    lstitBiblioteca: TListBoxItem;
+    lstitCancelar: TListBoxItem;
+    ShadowEffect1: TShadowEffect;
+    AcoesGeral: TActionList;
+    actFotoBiblioteca: TTakePhotoFromLibraryAction;
+    actFotoCamera: TTakePhotoFromCameraAction;
+    ShowShareSheetAction1: TShowShareSheetAction;
+    spbSalvarNovoItem: TSpeedButton;
+    edCategoria: TEdit;
+    imgFotoItem: TImage;
+    actFotoBibliotecaItens: TTakePhotoFromLibraryAction;
+    actFotoCameraItens: TTakePhotoFromCameraAction;
+    ImagemFundo: TImage;
+    LinkControlToField1: TLinkControlToField;
+    LinkControlToField2: TLinkControlToField;
+    lytPreferencias: TLayout;
+    pnPreferencias: TPanel;
+    ToolBarPref: TToolBar;
+    lbPreferencias: TLabel;
+    lbLabel: TLabel;
+    Image1: TImage;
+    spbSuasListas: TSpeedButton;
+    spbPreferencias: TSpeedButton;
+    spbNovaLista: TSpeedButton;
+    Glyph3: TGlyph;
+    Glyph1: TGlyph;
+    lbNovaLista: TLabel;
+    Label2: TLabel;
+    lbSuasListas: TLabel;
+    BindSourceDB1: TBindSourceDB;
+    BindSourceDB2: TBindSourceDB;
+    ListBox1: TListBox;
+    TimeToBuy: TListBoxGroupHeader;
+    ListBoxItem3: TListBoxItem;
+    ListBoxItem4: TListBoxItem;
+    Rectangle2: TRectangle;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    lytUsuario: TLayout;
+    tbcPrimeiroContato: TTabControl;
+    TabItem1: TTabItem;
+    TabItem2: TTabItem;
+    Label1: TLabel;
+    Image4: TImage;
+    Label3: TLabel;
+    SpeedButton4: TSpeedButton;
+    recFundo: TRectangle;
+    Label4: TLabel;
+    lbInfNome: TLabel;
+    spbSeguinte: TSpeedButton;
+    Layout3: TLayout;
+    edNomeUsuario: TEdit;
+    ClearEditButton1: TClearEditButton;
+    recMsgUsuario: TRectangle;
+    lbMsgUsuario: TLabel;
+    RectAnimation1: TRectAnimation;
+    FloatAnimation1: TFloatAnimation;
+    TimerFloatAnimation: TTimer;
+    TimerRecVisible: TTimer;
+    glyphMsg: TGlyph;
+    ListBoxItem6: TListBoxItem;
+    pnAcoes: TPanel;
+    spbPanelEditar: TSpeedButton;
+    spbPanelExcluir: TSpeedButton;
+    spbPanelCancelar: TSpeedButton;
+    LinkPropertyToFieldBitmap2: TLinkPropertyToField;
+    LinkPropertyToFieldBitmap: TLinkPropertyToField;
+    ToolBar2: TToolBar;
+    Image2: TImage;
+    lbComecado: TLabel;
+    spbVoltarInicio: TSpeedButton;
+    lbDesenv: TLabel;
+    procedure spbSuasListasClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure lsvListasDeletingItem(Sender: TObject; AIndex: Integer;
+      var ACanDelete: Boolean);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure spbSalvarNovaCategoriaClick(Sender: TObject);
+    procedure spbCancelarClick(Sender: TObject);
+    procedure imgFotoClick(Sender: TObject);
+    procedure lstitCancelarClick(Sender: TObject);
+    procedure lstitNovaFotoClick(Sender: TObject);
+    procedure lstitBibliotecaClick(Sender: TObject);
+    procedure actFotoBibliotecaDidFinishTaking(Image: TBitmap);
+    procedure actFotoCameraDidFinishTaking(Image: TBitmap);
+    procedure spbSalvarNovoItemClick(Sender: TObject);
+    procedure LimparNomeNovaCategoriaClick(Sender: TObject);
+    procedure actFotoBibliotecaItensDidFinishTaking(Image: TBitmap);
+    procedure actFotoCameraItensDidFinishTaking(Image: TBitmap);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure spbPreferenciasClick(Sender: TObject);
+    procedure spbNovaListaClick(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure spbSeguinteClick(Sender: TObject);
+    procedure TimerFloatAnimationTimer(Sender: TObject);
+    procedure TimerRecVisibleTimer(Sender: TObject);
+    procedure ListBoxItem6Click(Sender: TObject);
+    procedure spbPanelCancelarClick(Sender: TObject);
+    procedure spbPanelExcluirClick(Sender: TObject);
+    procedure spbPanelEditarClick(Sender: TObject);
+    procedure spbVoltarInicioClick(Sender: TObject);
+  private
+    { Private declarations }
+    FCategorias: TfrmCategorias;
+    FListas: TfrmListas;
+  public
+    NewOrEdit: Integer;
+    procedure HideBackground;
+    procedure ShowBackground(AParent: TFmxObject; AOnClick: TNotifyEvent = nil);
+    procedure ChamaCategoria;
+    procedure ChamaListas;
+    procedure HidePopup;
+    procedure CancelaNovoRegistro;
+    procedure PanelAcoes;
+    procedure CancelaAcoes;
+    procedure MsgErro(menssagem: String);
+    procedure MsgOk(menssagem: String);
+    procedure DMAtualizaCategorias;
+    procedure DMAtualizaItens;
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+{$R *.fmx}
+
+uses uDM;
+
+procedure TfrmMain.actFotoBibliotecaDidFinishTaking(Image: TBitmap);
+begin
+  DM.FDCategoriasCrudIMAGEM.Assign(Image);
+  ImagemFundo.Visible := False;
+end;
+
+procedure TfrmMain.actFotoBibliotecaItensDidFinishTaking(Image: TBitmap);
+begin
+  DM.FDItensCrudIMAGEM.Assign(Image);
+  ImagemFundo.Visible := False;
+end;
+
+procedure TfrmMain.actFotoCameraDidFinishTaking(Image: TBitmap);
+begin
+  DM.FDCategoriasCrudIMAGEM.Assign(Image);
+  ImagemFundo.Visible := False;
+end;
+
+procedure TfrmMain.actFotoCameraItensDidFinishTaking(Image: TBitmap);
+begin
+  DM.FDItensCrudIMAGEM.Assign(Image);
+  ImagemFundo.Visible := False;
+end;
+
+procedure TfrmMain.HidePopup;
+begin
+  HideBackground;
+  lstPopUpFoto.AnimateFloat('position.y', lstPopUpFoto.Height * -1);
+  lstPopUpFoto.Visible := False;
+end;
+
+procedure TfrmMain.HideBackground;
+begin
+  recBackground.AnimateFloat('opacity', 0, 0.1);
+  recBackground.Visible := False;
+end;
+
+procedure TfrmMain.CancelaAcoes;
+begin
+  pnAcoes.Visible := False;
+  pnAcoes.SendToBack;
+  HideBackground;
+end;
+
+procedure TfrmMain.CancelaNovoRegistro;
+begin
+  if DM.FDCategoriasCrud.State in dsEditModes then
+  begin
+    DM.FDCategoriasCrud.Cancel;
+    DM.FDCategorias.Cancel;
+  end;
+  if DM.FDItens.State in dsEditModes then
+  begin
+    DM.FDItensCrud.Cancel;
+    DM.FDItens.Cancel;
+  end;
+
+  imgFotoItem.Visible            := False;
+  imgFoto.Visible                := False;
+  edCategoria.Visible            := False;
+  spbSalvarNovoItem.Visible      := False;
+  spbSalvarNovaCategoria.Visible := False;
+  MultiViewEdicao.HideMaster;
+end;
+
+procedure TfrmMain.ChamaCategoria;
+begin
+  FCategorias := TfrmCategorias.Create(Self);
+  MultiView.HideMaster;
+  lytMain.AddObject(FCategorias.lyCategorias);
+  frmListas.DisposeOf;
+  frmListas := nil;
+end;
+
+procedure TfrmMain.ChamaListas;
+begin
+  FListas := TfrmListas.Create(Self);
+  MultiView.HideMaster;
+  lytMain.AddObject(FListas.lytListas);
+  frmCategorias.DisposeOf;
+  frmCategorias := nil;
+end;
+
+procedure TfrmMain.DMAtualizaCategorias;
+begin
+  DM.FDCategoriasCrud.Active := False;
+  DM.FDCategoriasCrud.Active := True;
+  DM.FDCategorias.Active     := False;
+  DM.FDCategorias.Active     := True;
+end;
+
+procedure TfrmMain.DMAtualizaItens;
+begin
+  DM.FDItens.Active     := False;
+  DM.FDItens.Active     := True;
+  DM.FDItensCrud.Active := False;
+  DM.FDItensCrud.Active := True;
+end;
+
+procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  frmMain.Close;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  DM.FDUsuarios.Active := True;
+  if DM.FDUsuarios.IsEmpty then
+    lytUsuario.Visible := True
+  else
+    lytUsuario.Visible := False;
+
+  MultiViewEdicao.Visible := False;
+  recBackground.Visible   := False;
+  recBackground.Align     := TAlignLayout.Contents;
+
+  DM.FDItensCrud.Active       := True;
+  DM.FDListas_Usuarios.Active := True;
+  ChamaListas;
+end;
+
+procedure TfrmMain.FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+  Shift: TShiftState);
+var
+  FService : IFMXVirtualKeyboardService;
+begin
+  {Recebe o estado do teclado virtual}
+  TPlatformServices.Current.SupportsPlatformService(IFMXVirtualKeyboardService, IInterface(FService));
+  {Se o botão back pressionado e o teclado virtual ativo, não faz nada}
+  if Key = vkHardwareBack then
+  begin
+    if (FService <> nil) and (TVirtualKeyboardState.Visible in FService.VirtualKeyBoardState) then
+    begin
+      //Reservado, não faz nada
+    end else
+    begin
+      if (FListas.lytListas.Visible and (FListas.tbcListas.ActiveTab = FListas.TabItem1)) then
+      begin
+        MessageDlg('Deseja sair do aplicativo?', TMsgDlgType.mtConfirmation,
+            [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0,
+            procedure (const AResult: TModalResult)
+            begin
+              if AResult = mrYes then
+              begin
+                {$IFDEF ANDROID}
+                MainActivity.finish;
+                {$ELSE}
+                exit;
+                {$ENDIF}
+              end;
+            end
+          );
+      {$Region 'Tomadas de decisões de todas as telas do programa'}
+      end else
+      if (FListas.lytListas.Visible and (FListas.tbcListas.ActiveTab = FListas.TabItem2) and
+         (MultiViewEdicao.IsShowed = False)) then
+        FListas.tbcListas.Previous()
+      else
+      if (FCategorias.lyCategorias.Visible and (FCategorias.tbcGeral.ActiveTab = FCategorias.TabItemGeral0)
+          and (MultiViewEdicao.IsShowed = False)) then
+        ChamaListas
+      else
+      if ((FCategorias.lyCategorias.Visible) and (FCategorias.tbcGeral.ActiveTab = FCategorias.TabItemGeral1) and
+         (FCategorias.tbcCategoriasItens.ActiveTab = FCategorias.TabItemCategorias) and (MultiViewEdicao.IsShowed = False)) then
+        FCategorias.tbcGeral.Previous()
+      else
+      if ((FCategorias.lyCategorias.Visible) and (FCategorias.tbcGeral.ActiveTab = FCategorias.TabItemGeral1) and
+         (FCategorias.tbcCategoriasItens.ActiveTab = FCategorias.TabItemItens) and (MultiViewEdicao.IsShowed = False)) then
+        FCategorias.tbcCategoriasItens.Previous()
+      else
+      if MultiView.IsShowed then
+        MultiView.HideMaster
+      else
+      if MultiViewEdicao.IsShowed then
+        CancelaNovoRegistro
+      else
+      if ((FCategorias.lyCategorias.Visible) and (FCategorias.pnOpcoesItem.Visible)
+         and (MultiViewEdicao.IsShowed = False))then begin
+        FCategorias.pnOpcoesItem.SendToBack;
+        FCategorias.pnOpcoesItem.Visible := False;
+        HideBackground;
+      end;
+      {$EndRegion}
+      Key := 0;
+    end;
+  end
+  else if Key = vkMenu then
+  begin
+    MultiView.ShowMaster;
+  end;
+end;
+
+procedure TfrmMain.imgFotoClick(Sender: TObject);
+begin
+  ShowBackground(Self.lytEdicao, lstitCancelarClick);
+  lstPopUpFoto.Visible := True;
+  lstPopUpFoto.AnimateFloat('position.y', 0);
+  lstPopUpFoto.BringToFront;
+end;
+
+procedure TfrmMain.LimparNomeNovaCategoriaClick(Sender: TObject);
+begin
+  edNome.Text := '';
+end;
+
+procedure TfrmMain.ListBoxItem6Click(Sender: TObject);
+begin
+  DM.FDUsuarios.Delete;
+  DM.FDUsuarios.Active := False;
+  DM.FDUsuarios.Active := True;
+  MsgErro('Ok!');
+end;
+
+procedure TfrmMain.lstitBibliotecaClick(Sender: TObject);
+begin
+  HidePopup;
+  if spbSalvarNovaCategoria.Visible then
+  begin
+    actFotoBiblioteca.ExecuteTarget(Sender);
+    imgFoto.Visible := True;
+  end else
+  begin
+    actFotoBibliotecaItens.ExecuteTarget(Sender);
+    imgFotoItem.Visible := True;
+  end;
+end;
+
+procedure TfrmMain.lstitCancelarClick(Sender: TObject);
+begin
+  HidePopup;
+  HideBackground;
+end;
+
+procedure TfrmMain.lstitNovaFotoClick(Sender: TObject);
+begin
+  HidePopup;
+  if spbSalvarNovaCategoria.Visible then
+    actFotoCamera.ExecuteTarget(Sender)
+  else
+    actFotoBibliotecaItens.ExecuteTarget(Sender);
+end;
+
+procedure TfrmMain.lsvListasDeletingItem(Sender: TObject; AIndex: Integer;
+  var ACanDelete: Boolean);
+begin
+  DM.FDListas_Usuarios.Locate('ID_LISTA_CRIADA', AIndex+1, []);
+  DM.FDListas_Usuarios.Delete;
+end;
+
+procedure TfrmMain.ShowBackground(AParent: TFmxObject; AOnClick: TNotifyEvent);
+begin
+  recBackground.OnClick := AOnClick;
+  recBackground.Parent  := AParent;
+  recBackground.BringToFront;
+  recBackground.Opacity := 0;
+  recBackground.Visible := True;
+  recBackground.AnimateFloat('opacity', 0.7, 0.1);
+end;
+
+procedure TfrmMain.spbCancelarClick(Sender: TObject);
+begin
+  CancelaNovoRegistro;
+  FCategorias.AtualizaItens;
+end;
+
+procedure TfrmMain.spbNovaListaClick(Sender: TObject);
+begin
+  if FCategorias.lyCategorias.Visible then
+    ChamaListas
+  else if lytPreferencias.Visible then
+    lytPreferencias.Visible := False;
+  FListas.tbcListas.Next;
+end;
+
+procedure TfrmMain.spbPanelCancelarClick(Sender: TObject);
+begin
+  CancelaAcoes;
+end;
+
+procedure TfrmMain.spbPanelEditarClick(Sender: TObject);
+begin
+  lbLabel.Text := 'Edição';
+  if (FListas.lytListas.Visible) and (FListas.tbcListas.ActiveTab = FListas.TabItem1) then
+  begin
+    ShowBackground(Self.FListas.lytListas, spbCancelarClick);
+    FListas.pnObservacao.Visible := True;
+    FListas.pnObservacao.BringToFront;
+    FListas.edObservacao.SetFocus;
+    FListas.edObservacao.Text := DM.FDListas_UsuariosOBSERVACAO.AsString;
+    pnAcoes.Visible := False;
+  end else
+  if (FCategorias.lyCategorias.Visible) and (FCategorias.tbcCategoriasItens.ActiveTab = FCategorias.TabItemCategorias) then
+  begin
+    DM.FDCategoriasCrud.Locate('ID_CATEGORIA', DM.FDCategoriasID_CATEGORIA.AsInteger, []);
+    DM.FDCategoriasCrud.Edit;
+    frmMain.MultiViewEdicao.ShowMaster;
+    spbSalvarNovaCategoria.Visible := True;
+    imgFoto.Visible                := True;
+    edNome.Text                    := DM.FDCategoriasCATEGORIA.AsString;
+    CancelaAcoes;
+  end else
+  if (FCategorias.lyCategorias.Visible) and (FCategorias.tbcCategoriasItens.ActiveTab = FCategorias.TabItemItens) then
+  begin
+    DM.FDItensCrud.Locate('ID_ITEM', DM.FDItensID_ITEM.AsInteger, []);
+    DM.FDItensCrud.Edit;
+    frmMain.MultiViewEdicao.ShowMaster;
+    frmMain.spbSalvarNovoItem.Visible := True;
+    frmMain.imgFotoItem.Visible       := True;
+    frmMain.edCategoria.Visible       := True;
+    edNome.Text                       := DM.FDItensDESCRICAO.AsString;
+    CancelaAcoes;
+  end;
+  NewOrEdit := 1;
+  ImagemFundo.Visible := False;
+end;
+
+procedure TfrmMain.spbPanelExcluirClick(Sender: TObject);
+begin
+  if (FListas.lytListas.Visible) and (FListas.tbcListas.ActiveTab = FListas.TabItem1) then
+  begin
+    MessageDlg('Excluir Lista?', TMsgDlgType.mtConfirmation,
+            [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0, procedure (const AResult: TModalResult)
+    begin
+      if AResult = mrYes then
+      begin
+        FListas.lsvSuasListas.BeginUpdate;
+        try
+          TDAOClass.RemoveRegistro('LISTAS_USUARIOS', 'ID_LISTA', DM.FDListas_UsuariosID_LISTA.AsInteger);
+          DM.FDListas_Usuarios.Refresh;
+        finally
+          FListas.lsvSuasListas.EndUpdate;
+        end;
+      end;
+    end);
+  end else
+  if (FCategorias.lyCategorias.Visible) and (FCategorias.tbcCategoriasItens.ActiveTab = FCategorias.TabItemCategorias) then
+  begin
+    MessageDlg('Excluir Categoria?', TMsgDlgType.mtConfirmation,
+            [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0, procedure (const AResult: TModalResult)
+    begin
+      if AResult = mrYes then
+      begin
+        FCategorias.lsvCategorias.BeginUpdate;
+        try
+          TDAOClass.RemoveRegistro('CATEGORIAS', 'ID_CATEGORIA', DM.FDCategoriasID_CATEGORIA.AsInteger);
+          DM.FDCategorias.Refresh;
+        finally
+          FCAtegorias.lsvCategorias.EndUpdate;
+        end;
+      end;
+    end);
+  end;
+  CancelaAcoes;
+end;
+
+procedure TfrmMain.spbPreferenciasClick(Sender: TObject);
+begin
+  lytMain.Visible := False;
+  lytPreferencias.Visible := True;
+  MultiView.HideMaster;
+end;
+
+procedure TfrmMain.spbSalvarNovaCategoriaClick(Sender: TObject);
+begin
+  try
+    with DM.FDCategoriasCrud do
+    begin
+      if not edNome.Text.IsEmpty then
+      begin
+        if NewOrEdit = 1 then
+        begin
+          Locate('ID_CATEGORIA', DM.FDCategoriasID_CATEGORIA.AsInteger, []);
+          Edit;
+          FieldByName('CATEGORIA').AsString := edNome.Text;
+          Post;
+          {TDAOClass.AtualizaRegistro('CATEGORIAS', 'CATEGORIA', edNome.Text,
+                                      'ID_CATEGORIA', DM.FDCategoriasID_CATEGORIA.AsInteger)}
+        end
+        else
+        begin
+          if State = dsInsert then
+          begin
+            FieldByName('ID_CATEGORIA').AsInteger := DM.FProxCategoria;
+            FieldByName('CATEGORIA').AsString := edNome.Text;
+            Post;
+            {TDAOClass.InsereCategoria(DM.FProxCategoria, edNome.Text);}
+          end;
+        end
+      end else
+        MsgErro('Categoria sem descrição!');
+    end;
+  finally
+    MsgOk('Ok');
+    DMAtualizaCategorias;
+    CancelaNovoRegistro;
+  end;
+end;
+
+procedure TfrmMain.spbSalvarNovoItemClick(Sender: TObject);
+begin
+  try
+    with DM.FDItensCrud do
+    begin
+      if not edNome.Text.IsEmpty then
+      begin
+        if NewOrEdit = 1 then
+        begin
+          Locate('ID_ITEM', DM.FDItensID_ITEM.AsInteger, []);
+          Edit;
+          FieldByName('DESCRICAO').AsString := edNome.Text;
+          Post;
+        end
+          {TDAOClass.AtualizaRegistro('ITENS', 'DESCRICAO', edNome.Text,
+                                      'ID_ITEM', DM.FDItensID_ITEM.AsInteger)}
+        else
+        begin
+          if State = dsInsert then
+          begin
+            FieldByName('ID_ITEM').AsInteger := DM.FProxItem;
+            FieldByName('ID_CATEGORIA').AsInteger := DM.FDCategoriasID_CATEGORIA.AsInteger;
+            FieldByName('DESCRICAO').AsString := edNome.Text;
+            FieldByName('FAVORITO').AsInteger := 2;
+            //TBlobField(FieldByName('IMG_FAVORITO')).LoadFromFile('/storage/emulated/0/Android/data/estrelaCinza.png');
+            Post;
+            MsgOk('Ok');
+            {TDAOClass.InsereItem(DM.FProxItem, DM.FDCategoriasID_CATEGORIA.AsInteger, edNome.Text);}
+          end;
+        end;
+      end else
+      MsgErro('Item sem descrição!');
+    end;
+  finally
+    DMAtualizaItens;
+    CancelaNovoRegistro;
+  end;
+end;
+
+procedure TfrmMain.spbSuasListasClick(Sender: TObject);
+begin
+  lytPreferencias.Visible := False;
+  lytMain.Visible := True;
+  ChamaListas;
+end;
+
+procedure TfrmMain.spbVoltarInicioClick(Sender: TObject);
+begin
+  tbcPrimeiroCOntato.Previous();
+end;
+
+procedure TfrmMain.SpeedButton4Click(Sender: TObject);
+begin
+  tbcPrimeiroContato.Next();
+end;
+
+procedure TfrmMain.TimerFloatAnimationTimer(Sender: TObject);
+begin
+  FloatAnimation1.Enabled := True;
+  TimerRecVisible.Enabled := True;
+end;
+
+procedure TfrmMain.TimerRecVisibleTimer(Sender: TObject);
+begin
+  recMsgUsuario.Visible       := False;
+  TimerFloatAnimation.Enabled := False;
+  TimerRecVisible.Enabled     := False;
+  RectAnimation1.Enabled      := False;
+  FloatAnimation1.Enabled     := False;
+  recMsgUsuario.Opacity       := 0.8;
+end;
+
+procedure TfrmMain.spbSeguinteClick(Sender: TObject);
+begin
+  if not edNomeUsuario.Text.IsEmpty then begin
+    DM.FDUsuarios.Insert;
+    DM.FDUsuarios.FieldByName('NOME').AsString := edNomeUsuario.Text;
+    DM.FDUsuarios.FieldByName('PRIMEIRO_CONT').AsInteger := 0;
+    DM.FDUsuarios.Post;
+    lytUsuario.Visible := False;
+    MsgOk('Ok');
+    FListas.recTutorial.Visible := True;
+  end
+  else begin
+    MsgErro('Por favor, preencha seu email!');
+  end;
+end;
+
+procedure TfrmMain.MsgErro(menssagem: String);
+begin
+  recMsgUsuario.Visible       := True;
+  lbMsgUsuario.Text           := menssagem;
+  glyphMsg.ImageIndex         := 19;
+  recMsgUsuario.Width         := 170;
+  recMsgUsuario.BringToFront;
+  RectAnimation1.Enabled      := True;
+  TimerFloatAnimation.Enabled := True;
+end;
+
+procedure TfrmMain.MsgOk(menssagem: String);
+begin
+  recMsgUsuario.Visible       := True;
+  lbMsgUsuario.Text           := menssagem;
+  glyphMsg.ImageIndex         := 18;
+  recMsgUsuario.Width         := 90;
+  recMsgUsuario.BringToFront;
+  RectAnimation1.Enabled      := True;
+  TimerFloatAnimation.Enabled := True;
+end;
+
+procedure TfrmMain.PanelAcoes;
+begin
+  ShowBackground(Self.lytMain, spbPanelCancelarClick);
+  pnAcoes.Visible := True;
+  pnAcoes.BringToFront;
+  pnAcoes.AnimateFloat('position.y', 200);
+end;
+
+end.

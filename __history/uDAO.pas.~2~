@@ -1,0 +1,28 @@
+unit uDAO;
+
+interface
+uses
+ SysUtils,
+ uDM;
+
+procedure DeletaItem(iID_Item: Integer);
+
+implementation
+
+procedure DeletaItem(iID_Item: Integer);
+begin
+  with DM.FDAuxiliar do
+  begin
+    try
+      Close;
+      SQL.Add('DELETE FROM ITENS WHERE ID_ITEM = ' + IntToStr(iID_ITEM));
+      ExecSQL;
+    except on E: Exception do
+      begin
+        ShowException(E.Message);
+      end;
+    end;
+  end;
+end;
+
+end.

@@ -1,0 +1,110 @@
+inherited frmCategorias_NmXhdpiPh: TfrmCategorias_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 3
+  inherited lyCategorias: TLayout
+    Size.Width = 400.000000000000000000
+    Size.Height = 615.000000000000000000
+    inherited ToolBar: TToolBar
+      Size.Width = 400.000000000000000000
+      inherited lbToolBar: TLabel
+        Size.Width = 400.000000000000000000
+      end
+      inherited Image1: TImage
+        MultiResBitmap.Height = 78
+        MultiResBitmap.Width = 637
+        Size.Width = 400.000000000000000000
+      end
+      inherited spbVoltarListas: TSpeedButton
+        Margins.Left = 8.000000000000000000
+        Position.X = 8.000000000000000000
+      end
+      inherited spbNovoRegistro: TSpeedButton
+        Margins.Right = 8.000000000000000000
+        Position.X = 345.000000000000000000
+      end
+      inherited spbVoltarItens: TSpeedButton
+        Margins.Left = 8.000000000000000000
+        Position.X = 73.000000000000000000
+      end
+      inherited spbLimparLista: TSpeedButton
+        Margins.Right = 8.000000000000000000
+        Position.X = 296.000000000000000000
+      end
+    end
+    inherited tbcGeral: TTabControl
+      Size.Width = 400.000000000000000000
+      Size.Height = 567.000000000000000000
+      inherited TabItemGeral0: TTabItem
+        Size.Width = 200.000000000000000000
+        inherited lsvListas_Itens: TListView
+          Size.Width = 400.000000000000000000
+          Size.Height = 518.000000000000000000
+          inherited lbListaVazia: TLabel
+            Size.Width = 400.000000000000000000
+            Size.Height = 518.000000000000000000
+          end
+          inherited recTutorial: TRectangle
+            inherited imgTutorial: TImage
+              MultiResBitmap.Height = 64
+              MultiResBitmap.Width = 64
+              Margins.Right = 140.000000000000000000
+              Position.X = 405.000000000000000000
+              RotationCenter.X = 5.000000000000000000
+            end
+          end
+        end
+      end
+      inherited TabItemGeral1: TTabItem
+        Size.Width = 200.000000000000000000
+        inherited tbcCategoriasItens: TTabControl
+          Size.Width = 400.000000000000000000
+          Size.Height = 518.000000000000000000
+          inherited TabItemCategorias: TTabItem
+            Size.Width = 200.000000000000000000
+            inherited lsvCategorias: TListView
+              Size.Width = 400.000000000000000000
+              Size.Height = 469.000000000000000000
+            end
+          end
+          inherited TabItemItens: TTabItem
+            Size.Width = 200.000000000000000000
+            inherited libAlfabetoItens: TListBox
+              Position.X = 385.000000000000000000
+              Size.Height = 469.000000000000000000
+              StyleLookup = 'transparentlistboxstyle'
+              Viewport.Width = 15.000000000000000000
+              Viewport.Height = 469.000000000000000000
+            end
+            inherited lsvItensFavoritos: TListView
+              Position.X = 355.000000000000000000
+              Size.Height = 469.000000000000000000
+            end
+            inherited lsvItens: TListView
+              Anchors = [akTop, akRight, akBottom]
+              Size.Width = 355.000000000000000000
+              Size.Height = 469.000000000000000000
+              inherited recDica: TCalloutRectangle
+                Margins.Top = 180.000000000000000000
+                Margins.Right = 50.000000000000000000
+                Position.Y = 180.000000000000000000
+                inherited Label1: TLabel
+                  Visible = False
+                end
+                inherited RectAnimation2: TRectAnimation
+                  StartValue.Bottom = -100.000000000000000000
+                  StopValue.Top = 50.000000000000000000
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+    inherited pnOpcoesItem: TPanel
+      inherited spbEditarItem: TSpeedButton
+        Position.Y = 48.000000000000000000
+      end
+    end
+  end
+end

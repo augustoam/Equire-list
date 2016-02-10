@@ -1,0 +1,255 @@
+unit uItens;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.ListView.Types, FMX.StdCtrls, FMX.Controls.Presentation, FMX.ListView,
+  FMX.TabControl, FMX.Layouts, FMX.Effects, FMX.Edit, FMX.ListBox, FMX.Objects,
+  FMX.Menus, FMX.ExtCtrls, FMX.MediaLibrary.Actions, System.Actions,
+  FMX.ActnList, FMX.StdActns, Data.Bind.GenData, System.Rtti,
+  System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt, System.Generics.Collections,
+  Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.ObjectScope,
+  Fmx.Bind.GenData, Data.Bind.DBScope, MultiDetailAppearanceU, Data.DB,
+  FMX.EditBox, FMX.SpinBox, FMX.Ani;
+
+type
+  TfrmItens = class(TForm)
+    lyItens: TLayout;
+    tbcItens: TTabControl;
+    TabItem1: TTabItem;
+    lsvItens: TListView;
+    tbItens: TToolBar;
+    TabItem2: TTabItem;
+    lytNovoItem: TLayout;
+    tbNovoItem: TToolBar;
+    ListBox1: TListBox;
+    ListBoxItem1: TListBoxItem;
+    imgFoto: TImage;
+    Layout1: TLayout;
+    edNome: TEdit;
+    edCategoria: TEdit;
+    ListBoxItem2: TListBoxItem;
+    spbSalvarNovo: TSpeedButton;
+    spbCancelar: TSpeedButton;
+    lstPopUpFotoItem: TListBox;
+    lstitNovaFoto: TListBoxItem;
+    lstitBiblioteca: TListBoxItem;
+    lstitCancelar: TListBoxItem;
+    ShadowEffect1: TShadowEffect;
+    AcoesGeral: TActionList;
+    actFotoBiblioteca: TTakePhotoFromLibraryAction;
+    actFotoCamera: TTakePhotoFromCameraAction;
+    ShowShareSheetAction1: TShowShareSheetAction;
+    BindingsList1: TBindingsList;
+    spbVoltar: TSpeedButton;
+    spbNovoItens: TSpeedButton;
+    spbVoltarNovoItem: TSpeedButton;
+    lbNovoItem: TLabel;
+    lbItem: TLabel;
+    BindSourceDB1: TBindSourceDB;
+    LinkControlToField1: TLinkControlToField;
+    LinkControlToField3: TLinkControlToField;
+    LinkListControlToField1: TLinkListControlToField;
+    pnAddItem: TPanel;
+    spbCancelarItem: TSpeedButton;
+    edQuantidadeItem: TEdit;
+    pbUnidadeItem: TPopupBox;
+    spbOK: TSpeedButton;
+    LinkPropertyToFieldBitmap: TLinkPropertyToField;
+    spbVoltarALista: TSpeedButton;
+    Image1: TImage;
+    Panel1: TPanel;
+    ClearEditButton1: TClearEditButton;
+    ClearEditButton2: TClearEditButton;
+    procedure spbVoltarNovoClick(Sender: TObject);
+    procedure lstitCancelarClick(Sender: TObject);
+    procedure spbNovoItensClick(Sender: TObject);
+    procedure spbVoltarClick(Sender: TObject);
+    procedure spbVoltarNovoItemClick(Sender: TObject);
+    procedure spbCancelarClick(Sender: TObject);
+    procedure spbVoltarAListaClick(Sender: TObject);
+    procedure imgFotoClick(Sender: TObject);
+    procedure actFotoBibliotecaDidFinishTaking(Image: TBitmap);
+    procedure actFotoCameraDidFinishTaking(Image: TBitmap);
+    procedure spbSalvarNovoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure lsvItensDeletingItem(Sender: TObject; AIndex: Integer;
+      var ACanDelete: Boolean);
+    procedure spbOKClick(Sender: TObject);
+    procedure spbCancelarItemClick(Sender: TObject);
+    procedure lsvItensItemClickEx(const Sender: TObject; ItemIndex: Integer;
+      const LocalClickPos: TPointF; const ItemObject: TListItemObject);
+    procedure ClearEditButton1Click(Sender: TObject);
+    procedure ClearEditButton2Click(Sender: TObject);
+  private
+    { Private declarations }
+    FChecked: TList<Integer>;
+  public
+    { Public declarations }
+    procedure HidePopup;
+    procedure VoltaEdicaoItem;
+  end;
+
+var
+  frmItens: TfrmItens;
+
+implementation
+
+uses uMain, uDM, uCategorias;
+
+{$R *.fmx}
+
+procedure TfrmItens.actFotoBibliotecaDidFinishTaking(Image: TBitmap);
+begin
+  DM.FDCategoriasIMAGEM.Assign(Image);
+end;
+
+procedure TfrmItens.actFotoCameraDidFinishTaking(Image: TBitmap);
+begin
+  DM.FDCategoriasIMAGEM.Assign(Image);
+end;
+
+procedure TfrmItens.ClearEditButton1Click(Sender: TObject);
+begin
+  edNome.Text := '';
+end;
+
+procedure TfrmItens.ClearEditButton2Click(Sender: TObject);
+begin
+  edQuantidadeItem.Text := '';
+end;
+
+procedure TfrmItens.FormCreate(Sender: TObject);
+begin
+  tbcItens.ActiveTab := TabItem1;
+  DM.FDItens.Active := False;
+  DM.FDItens.ParamByName('ID_CATEGORIA').AsInteger := DM.FDCategoriasID_CATEGORIA.AsInteger;
+  DM.FDItens.Active := True;
+end;
+
+procedure TfrmItens.HidePopup;
+begin
+  frmMain.HideBackground;
+  lstPopUpFotoItem.AnimateFloat('position.y', lstPopUpFotoItem.Height * -1);
+  lstPopUpFotoItem.Visible := False;
+end;
+
+procedure TfrmItens.imgFotoClick(Sender: TObject);
+begin
+  frmMain.ShowBackground(Self.lytNovoItem, lstitCancelarClick);
+  lstPopUpFotoItem.Visible := True;
+  lstPopUpFotoItem.AnimateFloat('position.y', 0);
+  lstPopUpFotoItem.BringToFront;
+end;
+
+procedure TfrmItens.lstitCancelarClick(Sender: TObject);
+begin
+  HidePopup;
+  frmMain.HideBackground;
+end;
+
+procedure TfrmItens.lsvItensDeletingItem(Sender: TObject; AIndex: Integer;
+  var ACanDelete: Boolean);
+begin
+  DM.FDItens.Locate('ID_ITEM', AIndex+1, []);
+  DM.FDItens.Delete;
+end;
+
+procedure TfrmItens.lsvItensItemClickEx(const Sender: TObject;
+  ItemIndex: Integer; const LocalClickPos: TPointF;
+  const ItemObject: TListItemObject);
+begin
+  frmMain.ShowBackground(Self.lyItens, spbCancelarItemClick);
+  edQuantidadeItem.Text := '';
+  pnAddItem.AnimateFloat('position.y', 100);
+  pnAddItem.BringToFront;
+end;
+
+procedure TfrmItens.spbCancelarClick(Sender: TObject);
+begin
+  DM.FDItens.Cancel;
+  tbcItens.Previous();
+end;
+
+procedure TfrmItens.spbCancelarItemClick(Sender: TObject);
+begin
+  pnAddItem.SendToBack;
+  frmMain.HideBackground;
+end;
+
+procedure TfrmItens.spbNovoItensClick(Sender: TObject);
+begin
+  DM.FDItens.Append;
+  tbcItens.Next();
+end;
+
+procedure TfrmItens.spbOKClick(Sender: TObject);
+begin
+  DM.FDListas_Itens.Active := False;
+  DM.FDListas_Itens.Active := True;
+
+  DM.FDListas_Itens.Append;
+  DM.FDListas_Itens.FieldByName('ID_LISTA_ITENS').AsInteger := DM.GetIDFromTable('LISTA_ITENS');
+  DM.FDListas_Itens.FieldByName('ID_ITEM').AsInteger := DM.FDItensID_ITEM.AsInteger;
+  DM.FDListas_Itens.FieldByName('ID_CATEGORIA').AsInteger := DM.FDItensID_CATEGORIA.AsInteger;
+  DM.FDListas_Itens.FieldByName('ID_LISTA_CRIADA').AsInteger := DM.FDListas_UsuariosID_LISTA.AsInteger;
+  DM.FDListas_Itens.FieldByName('QTD_UNMED').AsString := (edQuantidadeItem.Text +' '+ pbUnidadeItem.Text);
+  DM.FDListas_Itens.Post;
+
+  pnAddItem.SendToBack;
+  frmMain.HideBackground;
+end;
+
+procedure TfrmItens.spbSalvarNovoClick(Sender: TObject);
+begin
+  if edNome.Text > '' then begin
+    pbUnidadeItem.SetFocus;
+    if DM.FDItens.State in [dsInsert] then begin
+      DM.FDItens.FieldByName('ID_ITEM').AsInteger := DM.GetIDFromTable('ITENS');
+      DM.FDItens.FieldByName('ID_CATEGORIA').AsInteger := DM.FDCategoriasID_CATEGORIA.AsInteger;
+      DM.FDItens.FieldByName('DESCRICAO').AsString := edNome.Text;
+      DM.FDItens.Post;
+      VoltaEdicaoItem;
+      tbcItens.Previous();
+    end;
+  end
+  else
+    ShowMessage('Item sem descrição!');
+end;
+
+procedure TfrmItens.spbVoltarClick(Sender: TObject);
+begin
+  frmMain.ChamaCategoria;
+  frmItens.DisposeOf;
+end;
+
+procedure TfrmItens.spbVoltarNovoClick(Sender: TObject);
+begin
+  tbcItens.Previous();
+end;
+
+procedure TfrmItens.spbVoltarNovoItemClick(Sender: TObject);
+begin
+  DM.FDItens.Cancel;
+  tbcItens.Previous();
+end;
+
+procedure TfrmItens.spbVoltarAListaClick(Sender: TObject);
+begin
+  frmMain.ChamaListas;
+  frmItens.DisposeOf;
+  frmCategorias.DisposeOf;
+end;
+
+procedure TfrmItens.VoltaEdicaoItem;
+begin
+  if DM.FDItens.State in dsEditModes then
+    DM.FDItens.Cancel;
+
+  DM.FDItens.Active := False;
+  DM.FDItens.Active := True;
+end;
+
+end.

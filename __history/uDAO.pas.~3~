@@ -1,0 +1,73 @@
+unit uDAO;
+
+interface
+
+uses
+ SysUtils,
+ uDM;
+
+type
+  TDAOListas = class
+  public
+    class procedure RemoveRegistro(sTable: String; sID_Key: String; iID_Key: Integer);
+    class procedure InsereCategoria(iID_Categoria: Integer; sCategoria: String);
+    class procedure AtualizaRegistro(sTable: String; iID_Key: Integer; sID_Key: String; sColumn: String; sNewReg: String);
+  end;
+
+implementation
+
+class procedure TDAOListas.RemoveRegistro(sTable: String; sID_Key: String; iID_Key: Integer);
+begin
+  with DM.FDAuxiliar do
+  begin
+    try
+      Close;
+      SQL.Clear;
+      SQL.Add('DELETE FROM ' + sTable + ' WHERE ' + sID_Key + ' = ' + IntToStr(iID_Key));
+      ExecSQL;
+    except on E: Exception do
+      begin
+        //ShowException(E.Message);
+      end;
+    end;
+  end;
+end;
+
+class procedure TDAOListas.InsereCategoria(iID_Categoria: Integer; sCategoria: String);
+begin
+  with DM.FDAuxiliar do
+  begin
+    try
+      Close;
+      SQL.Clear;
+      SQL.Add('INSERT INTO CATEGORIAS (ID_CATEGORIA, CATEGORIA) VALUES( ' );
+      SQL.Add(IntToStr(iID_Categoria) + ', "' + sCategoria + '") ' );
+      ExecSQL;
+    except on E: Exception do
+      begin
+        //ShowException(E.Message);
+      end;
+    end;
+  end;
+end;
+
+class procedure TDAOListas.AtualizaRegistro(sTable: String; iID_Key: Integer; sID_Key: String; sColumn: String; sNewReg: String);
+begin
+  with DM.FDAuxiliar do
+  begin
+    try
+      Close;
+      SQL.Clear;
+      SQL.Add('UPDATE ' + sTable );
+      SQL.Add(' set ' + sColumn +'='+ sNewReg );
+      SQL.Add(' Where '+ sID_Key +'='+ iID_Key);
+      ExecSQL;
+    except on E: Exception do
+      begin
+        //ShowException(E.Message);
+      end;
+    end;
+  end;
+end;
+
+end.

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/08/18 14:41:36.000.665,=C:\Users\augusto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/08/18 14:44:05.000.041,=C:\Users\augusto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/08/28 11:59:37.000.186,=C:\Users\augusto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/08/28 14:20:49.000.234,C:\Projetos\Mercado\uMain.fmx=C:\Users\augusto\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
+    <Transaction>2015/08/28 14:20:49.000.234,C:\Projetos\Mercado\uMain.pas=C:\Users\augusto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/08/28 14:21:08.000.982,C:\Projetos\Mercado\ListasMercado.dproj=C:\Users\augusto\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2015/08/28 17:04:58.000.760,=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/28 17:05:05.000.931,C:\Projetos\Mercado\uCategorias.fmx=C:\Projetos\Mercado\Unit1.fmx</Transaction>
+    <Transaction>2015/08/28 17:05:05.000.931,C:\Projetos\Mercado\uCategorias.pas=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/28 17:35:27.000.674,=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/28 17:35:36.000.891,C:\Projetos\Mercado\uItens.pas=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/28 17:35:36.000.891,C:\Projetos\Mercado\uItens.fmx=C:\Projetos\Mercado\Unit1.fmx</Transaction>
+    <Transaction>2015/08/29 08:51:13.000.948,=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/29 08:51:20.000.534,C:\Projetos\Mercado\uListas.pas=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/29 08:51:20.000.534,C:\Projetos\Mercado\uListas.fmx=C:\Projetos\Mercado\Unit1.fmx</Transaction>
+    <Transaction>2015/08/31 14:21:59.000.608,=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/31 14:22:16.000.623,C:\Projetos\Mercado\uDM.pas=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/31 14:22:16.000.623,C:\Projetos\Mercado\uDM.fmx=C:\Projetos\Mercado\Unit1.fmx</Transaction>
+    <Transaction>2015/08/31 14:52:10.000.346,=C:\Projetos\Mercado\Unit1.pas</Transaction>
+    <Transaction>2015/08/31 14:52:51.000.648,C:\Projetos\Mercado\uDM.pas=</Transaction>
+    <Transaction>2015/08/31 14:53:22.000.652,C:\Projetos\Mercado\Unit1.dfm=C:\Projetos\Mercado\uDM.dfm</Transaction>
+    <Transaction>2015/08/31 14:53:22.000.652,C:\Projetos\Mercado\Unit1.pas=C:\Projetos\Mercado\uDM.pas</Transaction>
+  </Transactions>
+</BorlandProject>

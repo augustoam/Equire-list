@@ -1,0 +1,47 @@
+object frmDM: TfrmDM
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 190
+  ClientWidth = 325
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=C:\Projetos\Mercado\bd\mercado.db'
+      'DriverID=SQLite')
+    Connected = True
+    LoginPrompt = False
+    Left = 56
+    Top = 32
+  end
+  object FDCategorias: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'Select * From Categorias')
+    Left = 192
+    Top = 32
+    object FDCategoriasID_CATEGORIA: TIntegerField
+      FieldName = 'ID_CATEGORIA'
+      Origin = 'ID_CATEGORIA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDCategoriasCATEGORIA: TStringField
+      FieldName = 'CATEGORIA'
+      Origin = 'CATEGORIA'
+      Size = 80
+    end
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'FMX'
+    Left = 64
+    Top = 96
+  end
+  object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
+    Left = 192
+    Top = 96
+  end
+end

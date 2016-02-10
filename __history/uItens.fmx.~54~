@@ -1,0 +1,623 @@
+object frmItens: TfrmItens
+  Left = 0
+  Top = 0
+  Caption = 'Itens'
+  ClientHeight = 554
+  ClientWidth = 371
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object lyItens: TLayout
+    Align = Client
+    Size.Width = 371.000000000000000000
+    Size.Height = 554.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object pnAddItem: TPanel
+      Align = Center
+      Size.Width = 337.000000000000000000
+      Size.Height = 174.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object spbCancelarItem: TSpeedButton
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 30.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 118.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 46.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'buttonstyle'
+        Text = 'Cancelar'
+        TintColor = claRed
+        OnClick = spbCancelarItemClick
+      end
+      object edQuantidadeItem: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Top
+        TabOrder = 2
+        Position.X = 8.000000000000000000
+        Position.Y = 8.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Top = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Size.Width = 321.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = 'Quantidade'
+      end
+      object pbUnidadeItem: TPopupBox
+        Align = Top
+        Items.Strings = (
+          'Pe'#231'a'
+          'oz'
+          'lb'
+          'mo'#231'a'
+          'qt'
+          'Lata'
+          'Garrafa'
+          'Empacotar'
+          'Caixa'
+          'saco'
+          'mg'
+          'g'
+          'Kg'
+          'ml'
+          'cl'
+          'l')
+        ItemIndex = 0
+        Margins.Left = 8.000000000000000000
+        Margins.Top = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 321.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StaysPressed = True
+        TabOrder = 0
+      end
+      object spbOK: TSpeedButton
+        Align = Right
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 30.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 174.000000000000000000
+        Position.Y = 118.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 46.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'buttonstyle'
+        Text = 'OK'
+        TintColor = claLimegreen
+        OnClick = spbOKClick
+      end
+    end
+    object tbcItens: TTabControl
+      Align = Client
+      FullSize = True
+      Size.Width = 371.000000000000000000
+      Size.Height = 554.000000000000000000
+      Size.PlatformDefault = False
+      TabHeight = 49.000000000000000000
+      TabIndex = 0
+      TabOrder = 0
+      TabPosition = None
+      object TabItem1: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'TabItem1'
+        object lsvItens: TListView
+          ItemAppearanceClassName = 'TMultiDetailItemAppearance'
+          ItemEditAppearanceClassName = 'TMultiDetailDeleteAppearance'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          Align = Client
+          Size.Width = 371.000000000000000000
+          Size.Height = 465.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          ItemAppearance.ItemHeight = 60
+          ItemAppearance.ItemEditHeight = 60
+          ItemAppearanceObjects.ItemObjects.Image.Width = 50.000000000000000000
+          ItemAppearanceObjects.ItemObjects.Image.Height = 50.000000000000000000
+          ItemAppearanceObjects.ItemObjects.Image.Visible = True
+          ItemAppearanceObjects.ItemObjects.MultiDetail1.Font.Family = 'Myriad Pro'
+          ItemAppearanceObjects.ItemObjects.MultiDetail1.Font.Size = 20.000000000000000000
+          ItemAppearanceObjects.ItemObjects.MultiDetail1.Height = 45.000000000000000000
+          ItemAppearanceObjects.ItemObjects.MultiDetail1.Align = Center
+          ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Checkmark
+          OnItemClick = lsvItensItemClick
+          OnDeletingItem = lsvItensDeletingItem
+          NativeOptions = [Styled]
+        end
+        object tbItens: TToolBar
+          Size.Width = 371.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          TintColor = claLightsteelblue
+          object spbVoltar: TSpeedButton
+            Align = Left
+            Margins.Left = 8.000000000000000000
+            Position.X = 8.000000000000000000
+            Size.Width = 48.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'backtoolbutton'
+            OnClick = spbVoltarClick
+          end
+          object spbNovoItens: TSpeedButton
+            Align = Right
+            Margins.Right = 8.000000000000000000
+            Position.X = 315.000000000000000000
+            Size.Width = 48.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'additembutton'
+            OnClick = spbNovoItensClick
+          end
+          object lbItem: TLabel
+            Align = Contents
+            Size.Width = 371.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Itens'
+          end
+        end
+        object Panel1: TPanel
+          Align = Bottom
+          Position.Y = 513.000000000000000000
+          Size.Width = 371.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object spbVoltarALista: TSpeedButton
+            Align = Client
+            Size.Width = 371.000000000000000000
+            Size.Height = 41.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'buttonstyle'
+            Text = 'Voltar as Listas'
+            TintColor = claSkyblue
+            OnClick = spbVoltarAListaClick
+          end
+        end
+      end
+      object TabItem2: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'TabItem2'
+        object lytNovoItem: TLayout
+          Align = Client
+          Size.Width = 371.000000000000000000
+          Size.Height = 554.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object tbNovoItem: TToolBar
+            Size.Width = 371.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            TintColor = claLightsteelblue
+            object spbVoltarNovoItem: TSpeedButton
+              Align = Left
+              Margins.Left = 8.000000000000000000
+              Position.X = 8.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'backtoolbutton'
+              OnClick = spbVoltarNovoItemClick
+            end
+            object lbNovoItem: TLabel
+              Align = Contents
+              Size.Width = 371.000000000000000000
+              Size.Height = 48.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Center
+              Text = 'Novo Item'
+            end
+          end
+          object ListBox1: TListBox
+            Align = Client
+            Size.Width = 371.000000000000000000
+            Size.Height = 506.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            DisableFocusEffect = True
+            DefaultItemStyles.ItemStyle = ''
+            DefaultItemStyles.GroupHeaderStyle = ''
+            DefaultItemStyles.GroupFooterStyle = ''
+            Viewport.Width = 371.000000000000000000
+            Viewport.Height = 506.000000000000000000
+            object ListBoxItem1: TListBoxItem
+              Size.Width = 371.000000000000000000
+              Size.Height = 105.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              object Image1: TImage
+                MultiResBitmap.Height = 128
+                MultiResBitmap.Width = 128
+                MultiResBitmap = <
+                  item
+                    Width = 128
+                    Height = 128
+                    PNG = {
+                      89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                      CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      109549444154785EED5D598C1CC519FEBBBA67BA6776D7EB5DDBEB357648A220
+                      C00E6029F010290F510029124A908862BC268A2282E33524C82856128E0767A5
+                      28C95322E4036C1E72704460144148241E20124F2828916CECF189F06DEF3D7B
+                      CDD1337DE4FF7B76D73B33DDD3DD333D3BDDB355D6D8EB9DEA3AFEFFABBFFEAB
+                      AA0178E114E014E014E014E014E014E014E014E014E014E014E014E014E014E0
+                      14E014E014E014687F0A088D4EF1D891BD5F06C3785A00B6C530406AB43DFE7C
+                      73292008A62980300C82F9E7ADBBFFF0614300387EE817774051FD0FC8B1EEE6
+                      0E9BB7DE0C0A20F37FCC1A69D814F42738F31BA1606B9F35C1F8794300100461
+                      556BA7C07B6F8C024657430068AC73FE741828C00110062EB4700C1C002D247E
+                      18BA6ECC0A7879EFCB388941A789C413096012C7582B19ADCE65C1344D872168
+                      979A0A809E4D1B21A6C8AD9CFF8AEF7BECF38B60A283C6BE6897F8F25CE110E1
+                      00E00058E11458E1D3E712A04100B0580CA4559D10EFED81F89AD52075778128
+                      C71B6C75F91EE700A893D6822882BCAE17E4F56B21B60A999E544044AB27D685
+                      6058B7C6FA3029FCB1310E803A00C06212C87D6B81C9CE160E4981781F82201E
+                      ABA387E57B8403C02FAD0501457D2F08A23BE904C6ACBAC01AB2B6FD8ED0577D
+                      F759F86AAEFD2B4B9D491024D1F3440928126E0B612D1C003E392325933E9F00
+                      905037086BE100F0C11994FE20E0FEEFB790C4109877A9E1B7FD46EA7300F8A1
+                      1EEEE9F516410CA71E50FF8CEAA544949F239FBA535CC5655ECEFEF8D612C437
+                      2C7FF3C8B737B08EF8565130EFDEBA65D3CE0D3D1DB73B4DA11D834196F9E7D3
+                      B433350DF2C3632DE1B45B30C81100AF3CF1FDDE5155BD5730CCAD02885B4C03
+                      368368DC0E02A05D532A77DFB61E6EED77CE076D4700489D1D105BED2F134E9B
+                      9E85E2EC5CB8017068F7C0FD9830FC5DE22BE8F05510A17F3A537BD02B1100C4
+                      4565FD3ACFCAA0B5FA47C671EBA873EF6810366E1280E1B0848383DB5F41E67F
+                      887D3D839F0788F90DF6DBD68FABE39360EABAEB1C4D4387C244BA65CC771D20
+                      566007770F3C8EFFECF45299D729518098AF8E8E839ECD3992C4C8ABA08E4C80
+                      51D45A4236F24252A00A33B76BF6CFF0A00802C0BEB83DDC929985A4535337A0
+                      303985CADD2814A7A641CB6440C3F4ABE2F40C327E0CBC4A8986A683CC258554
+                      EC485A7A497C6D0F06A7D681B2710328B7ACB7025514B4AA5598A1B14D4E1598
+                      C0AD443706999A5E627C7AA60484D94C73563DF282618089DCCA147A56FAFB20
+                      B1B1DF0A4AC57BBA819453515170D54BB8EADD467DF37B268870854B00EF045B
+                      AE9A24C2C584822BBBDB5AC9095AD118628E51BE01869EFDC4236A4A0034EB52
+                      CE12C00794968B326DDA0F6DB7145E8E75AFB2AC0C12E1F1353DB8B293D65E8E
+                      7C6A4A2119EF0C80065C9F4D196D9B354A9142DABFE5B5BDC8F03E2BC144EAEA
+                      F06C6206410E26188223009A04BA20C61DD936ACF030AE6A12E74A3FAE72DCBF
+                      19A5CEB748DF421D807109D06438915246FB769C563A329DF67552E89A25D6FD
+                      4C873DF5F26BA368D5A2ABAABA7033D00F29ABEBB2B804315CE1CA867E4B7317
+                      AD95DE589B413F6DD97902C46CA500F3634F043DB208B747AB5DC67C40B96F1D
+                      48B8C7873F25CCB457042DCD9483C01B145161261B3DB1A1CF5AED2C1E8DD470
+                      4B02A0C3C7510F089DCCF2C68E65AB45F63A996E89FE75968D0E2E9EB7651B98
+                      C78E2C006020E8A4537DEE0DB4A78C805A3B1D025170C593E9061135994B0088
+                      89CEA66088539A3D823CD06AB42392A827C6D321105F7ED74047124C6316009E
+                      3EF8EA04FE3362D724D7016E52855CB3146CB1447D9B2C8CC5680FE62BD84A01
+                      6E0AE222C7235E64C3936B967E6EA77233DCE71013606D82F4BA9846E21EA36C
+                      0A06632C1BBE0DCBD278AFBD2F005666485810F1FC1F45DF28FFAF8D4DE19BDC
+                      75D80256A20E40011AA59FB27FA361CB3722981601C044FBA090805B00FD5911
+                      054DBB78EF6A2B40D3CEAB7E292F1701F0D44B6FA4F1D0C3753B46AF04459094
+                      3B05DDB76232BCE7F89AB108CB3778A76D20A24E0EAF04A3C81CA556D573EECF
+                      6B1F61AD570E00666F0AB6B321500AD3AEC170FC0AD9E62A905806003CFAE6E0
+                      0B684F4B40EAE8C0FD1E6DFB95C97B0B0AE59C75F005B42381E862A7580F9978
+                      6115CECB33AE3200C4413B65EF0EAE4F02688502A8982FAFCE65203F3B0BF999
+                      19C862EA740E3FD9F494F573269D9EFF5DE9FF39CCABCFCD605DAA8FCF167239
+                      28E2210BAD5800C3C3691C2F64B3CEF7E1C54EBC544880C12347A701F4AB9584
+                      A1C8573D452F1441530B4040D0F1848C8E39F4744CDAC00FDD5F6B1D99C6B369
+                      A5DF95FE4F4C36F03C9D551F9F2DE6F250C86641C57C7B02471601939B9EB640
+                      45DFE9C5628DBB70AB47BD7088A29EF9B4E333D59C35ABFD01613202E88CA581
+                      A7720854241DF278EA96A4490EA54B018F6A11789C0E62923B378EF978BCDCA4
+                      4015004CA11A00F54A80E524B481D2A598CF5BDB076D256A265B02C37CA11333
+                      E4E459E97B7E254FAA0020D82487909E14A5C410DA5E34555D04036D4314C98B
+                      6AD2463317521500D01CB60F0A45D44E26BD42EEC37BFDDA2C8C1B1428AA00A0
+                      8BDA29D5E6269CA8C60314BAC3B78B6BFC4E80A902C0CF0E1D9D934DFD72D55E
+                      51A725101452EB6987AE6BEDDCB8BE9E4757CC33F6F69D8D2510455769E7176E
+                      69D991ABA820C81E00CCC6148C983B50C1906EAC8E5B3DA3C2B8A0C6690B00C1
+                      262610A59030E5EA273770D1EF0524B600D06D2C81286D0149BACB8F6BFD5EF8
+                      6F9FF01787B92A4B202A7E0086277314CCE0E5C51B056C25C0E0917F662543BF
+                      B0B409720645C11424E6D316C08B370A38520A457E954388859CB0C4F8045FFD
+                      DE383F5FCB311A7E7070E077B8E69F5DDA5A067DED9A7ED3BFEE76536872F5EA
+                      65CDB449E0DB393AF0E6AC7629D3635370F2C3FFD63F1D8AB4D6B8DDBA4316DF
+                      70969536F981613F242253B0A74D4A6E360BD3C37823A91526AFF343A153BAA1
+                      D6E69390D97BDF7AFEC00F6A6C01D53181302B8214EA95F0EC5E3B9442BE00E3
+                      57467CE539F899B72C0BFF7EE0F9830FD3338E00C825B43390CF97BD7436CCF1
+                      20A5A73D563F25C48C5F1AC6EB689DDEF7EB87D5D5751309F1E3075F38F4E0C2
+                      378E00D8FBC7B77320CB9F975902218E07C8784943D40B89FAB18BC398EC526C
+                      CA5464453C76FF7307BE818ADFE2D5E535ED255330CB2E8E08EB313109C5BFDF
+                      97383485C20D363A790DEF18CEE61B6CC5FE71598133E9DB46EE5BCAFC9A5B80
+                      D54C455028ACEEE018267946BDCC8CA6213335DB946928B279A1E7A27ECFA38F
+                      1EADBAE3BEB6C7A4C2254C000823086274454B844B763A03E991C9A6CC4096D9
+                      8D42676CF37D478ED8EE2B3501805B7EB533286C7A00CAB4181EF0886A29E454
+                      98B83ADA9454C58E2EB1D0D5C9EE7C68CF7ECCF1B12F3501A049536771472A13
+                      1B613B4721C6E29175FD52EAFB382A7DCD78A398D4C5B4756B6FFDE2D7F7EC9F
+                      A9B5386A0260CFFEF7D5B8617EB6B481B0B983E9DE9E28163A073186E69EB624
+                      7339A879243A15181DCF7FEFAEC77F39ECD6A67BD4A4621B089B0E2029D1BCC4
+                      61021D3D24FE832E093CEC9A3A7F05AEDE185BEBA56D57006085323D206CA6A0
+                      88F64DD4CA342A7CB9994CE0C3569271387DF13ACC11B074E16E2F1DB802003D
+                      0665BE80B02586D085CC512AD9A9399846932FE82227E270FECA30CCE0EB6BA8
+                      E0BBA0367BE9C31500A802564800F747BC741C549D2865FE14327918478D3FE8
+                      12576270E1C618A4A74BCCA7628A7087977E5CB91963ABCEE521BF6843866D0B
+                      880A00C8BD3B7A1975B2805F2019430978657412C627CB9D48AAA9DEBAEF47DF
+                      74DD1F5D0130880E045997CF2FA0C9720635C56AF582D78A3A748155C8935468
+                      C4741A9A347E3ABF186421E60FE389E991713CD45D51F018AC9828F4DCE3D69F
+                      27B3FEC0E0C05B48EA6D0B8DCDE1716D1D5F26EC9610A2908BD60783FC5818B4
+                      90E89D789D78676F5085E1EB5C022F38D0C91B69C8E35176BF858ED78F5CB67D
+                      970788128309BC3FE1F235BAE5D7BEE041DF5D2FBCFA8F576AF5EB0D00BB06F6
+                      21737EBD08003A976F68AE00F03BE176AC9F57F1F5B185FA42BB14B29B99ADF6
+                      E092227E6D3C0DE3A850D62EECC5E75F7BF7995A75BC41BE222610F6CCA0B000
+                      A950C4B78BD6C97CA739D0F99CE1492FCCA7BDC7DCE2460B4F001098196A5F80
+                      DB245BF1BDA619984F13EC9E4FB7598DE1ED2823936E2BBF3463DD74B7043C01
+                      60B46FF83C8AA3C20221C3E60B6805836BF5A9A39B371B30F3493F9A989D81EB
+                      E3DE43C65231BFE9F0AE5DF8D649E7E2090043431F69021867179A61F35600F9
+                      B37929A7005D4E91CBE1CA0F923428F6D37373706DB45ADBAF45FFBC22B88EC2
+                      1300AC4E9624872C04846E4CCC063ACFA88389A89DCD952EBC0AAC20F367D0EA
+                      BA3CE2DF7B2899F22764C6D71A4BED778B2F79F2A17BEFDA8C62E87EFA1589A3
+                      2246B1B2E81F4ACFE621294B68ED31D4394CB40E56EE8734FE22DD8416D01F72
+                      1AA5313DFCC2F53A924554212F89E6631F9C385775EBDB5240783203E981FD83
+                      038FA0E8FFFBC2C3160054FFB66D602B8337644B818259D06310FF5834C4BDCF
+                      FEED9D4FDCC8E41D003BB7DF8E8E92453D801A2E200854BCAECD40A7102FCB4B
+                      0121AF1AA6225F412971C634D86910CD931800FA5495664F0CFDE523CF2BD333
+                      00DEDAB64D1C4B4A19C0F726554E95D2990DD237AC1328F8B3E5EF46414877FA
+                      D185900B1FEB6BFC9E2E8AE4DA8327C4D07D4D7865CF5513D859C6C453983E94
+                      9240383E97344E0CE1215E4F8DD4A8E41900D4C6C19D3B8E81085B1BED74E179
+                      0B0C0405EBC250FA8BC0330F9279D058DFD0D1280B50012A57414D22A07688D1
+                      8A8EEF6B60E6390C709C960438814C3F9EC9A74F0C1DFDC89BE15FC7587C01E0
+                      C0E08ED7F181C7EAE82790474A0286AE992D81C40250C5FF2DA090440A33600A
+                      E60D332E9C4565FA340ACE1433854FF132DCE343AFBF5F337F2F10225634E20B
+                      007862F839B4017EDB8C8134A34D4B5ECC6F4925B01068CA01D44CC098056394
+                      F426434246635E0532FC5330B5E3CFBDF12FFF365D3308846DFA02C0A1DD030F
+                      E36B66DF6DD2585ADEAC570953B2F317741DFA4918170CE31CC648708F662974
+                      039D58C584634FBFFA8E73A8AEE5B32D0DC017005EFCC9F6AF488C9565098764
+                      1ECB358C31DC5B522625CAD2455A78AF32BD7677FECDABCB358640FBF105807D
+                      FBF6B1BEABE7E64082B67EB312AE6F3C984F0CB6D2E1528221A434AD7072CF9F
+                      DE1E0B94FA2168CC170068BC070777FC0FFFF95A08C61EC0108C29B45F97AC68
+                      8C7A4A460A6F4B75CDA70FA0F35034E11F00BB76FC1557C60F43317A8F8340B5
+                      8F821629D2B8F146045CD1668A313DF5E4E1B7AF796CA26DABD503805F21007E
+                      1F4E8AA8191DE453A2892B593053A8B09E144433F5D397DEBC12CEF1B67E54BE
+                      01B07FF763DF61A6F95E2B878E4E936CCC344E53841263509642C6306965F7E1
+                      372F559E7F6FE538A3D0B76F00BC34B8FD4B06B0B23B049B35517CE5543E0EB1
+                      3356281A15320C42A68ABA999ABCE5CE0B4343433C001100E17D038092715F1C
+                      DC91C63493EE00FAB79AA06C232BE1C46027698FA6FD9A5E5CB16652FBFCD1A3
+                      D5971A04D52F6FC7A71F608160E8113C848F3EE997802AA84519E4730B269681
+                      4C46C75C6A62C3F5CF28EBC86F7BBC7EE314F02D01A8CBC3BBB6756B82F401FE
+                      789FED10F0357F20EB9F91E8462F9925BE45104F32B3E3BC5B864AE353E22DF8
+                      A1405D00A00E303C1C1FED951E4701FE003A4A0414DD676845E3A9D4D4FAA9E2
+                      5914DD8B49A47E06C4EB720A700A700A700A700A700A700A700A700A700A700A
+                      700A700A700A700A700A700A700A700A700A044D81FF03AEC4B81391AB5EC000
+                      00000049454E44AE426082}
+                    FileName = 'C:\Users\augusto\Desktop\mercado\Menu\foto.png'
+                  end>
+                Opacity = 0.800000011920929000
+                Position.X = 16.000000000000000000
+                Position.Y = 16.000000000000000000
+                Size.Width = 97.000000000000000000
+                Size.Height = 73.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object imgFoto: TImage
+                MultiResBitmap = <
+                  item
+                  end>
+                Align = Left
+                Margins.Left = 12.000000000000000000
+                Margins.Top = 12.000000000000000000
+                Margins.Right = 12.000000000000000000
+                Margins.Bottom = 12.000000000000000000
+                Position.X = 12.000000000000000000
+                Position.Y = 12.000000000000000000
+                Size.Width = 105.000000000000000000
+                Size.Height = 81.000000000000000000
+                Size.PlatformDefault = False
+                OnClick = imgFotoClick
+              end
+              object Layout1: TLayout
+                Anchors = [akLeft, akTop, akRight]
+                Position.X = 120.000000000000000000
+                Size.Width = 249.000000000000000000
+                Size.Height = 105.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                object edNome: TEdit
+                  Touch.InteractiveGestures = [LongTap, DoubleTap]
+                  Align = Top
+                  TabOrder = 0
+                  Position.Y = 13.000000000000000000
+                  Margins.Top = 13.000000000000000000
+                  Margins.Right = 8.000000000000000000
+                  Size.Width = 241.000000000000000000
+                  Size.Height = 32.000000000000000000
+                  Size.PlatformDefault = False
+                  TextPrompt = 'Nome'
+                end
+                object edCategoria: TEdit
+                  Touch.InteractiveGestures = [LongTap, DoubleTap]
+                  Anchors = [akLeft, akTop, akRight]
+                  TabOrder = 1
+                  ReadOnly = True
+                  TextSettings.FontColor = claGray
+                  Position.Y = 60.000000000000000000
+                  Margins.Top = 8.000000000000000000
+                  Margins.Right = 8.000000000000000000
+                  Size.Width = 243.000000000000000000
+                  Size.Height = 32.000000000000000000
+                  Size.PlatformDefault = False
+                  TextPrompt = 'Categoria'
+                  StyledSettings = [Family, Size, Style]
+                end
+              end
+            end
+            object ListBoxItem2: TListBoxItem
+              Position.Y = 105.000000000000000000
+              TabOrder = 1
+              object spbSalvarNovo: TSpeedButton
+                Align = Right
+                Margins.Left = 8.000000000000000000
+                Margins.Right = 8.000000000000000000
+                Position.X = 194.000000000000000000
+                Size.Width = 169.000000000000000000
+                Size.Height = 44.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'buttonstyle'
+                Text = 'Salvar'
+                TintColor = claSpringgreen
+                OnClick = spbSalvarNovoClick
+              end
+              object spbCancelar: TSpeedButton
+                Align = Client
+                Margins.Left = 8.000000000000000000
+                Margins.Right = 8.000000000000000000
+                Size.Width = 170.000000000000000000
+                Size.Height = 44.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'buttonstyle'
+                Text = 'Cancelar'
+                TintColor = claRed
+                OnClick = spbCancelarClick
+              end
+            end
+          end
+          object lstPopUpFotoItem: TListBox
+            Align = Center
+            Size.Width = 345.000000000000000000
+            Size.Height = 137.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Visible = False
+            DisableFocusEffect = True
+            ItemHeight = 45.000000000000000000
+            DefaultItemStyles.ItemStyle = ''
+            DefaultItemStyles.GroupHeaderStyle = ''
+            DefaultItemStyles.GroupFooterStyle = ''
+            Viewport.Width = 345.000000000000000000
+            Viewport.Height = 137.000000000000000000
+            object lstitNovaFoto: TListBoxItem
+              Selectable = False
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.Style = [fsBold]
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, FontColor]
+              Size.Width = 345.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Text = 'Nova Foto'
+            end
+            object lstitBiblioteca: TListBoxItem
+              Selectable = False
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.Style = [fsBold]
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, FontColor]
+              Position.Y = 45.000000000000000000
+              Size.Width = 345.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Text = 'Biblioteca'
+            end
+            object lstitCancelar: TListBoxItem
+              Selectable = False
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.Style = [fsBold]
+              StyledSettings = [Family, FontColor, Other]
+              Position.Y = 90.000000000000000000
+              Size.Width = 345.000000000000000000
+              Size.Height = 45.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'listboxitemlabel'
+              TabOrder = 2
+              Text = 'Cancelar'
+              OnClick = lstitCancelarClick
+            end
+            object ShadowEffect1: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+          end
+        end
+      end
+    end
+  end
+  object AcoesGeral: TActionList
+    Left = 264
+    Top = 392
+    object actFotoBiblioteca: TTakePhotoFromLibraryAction
+      Category = 'Media Library'
+      OnDidFinishTaking = actFotoBibliotecaDidFinishTaking
+    end
+    object actFotoCamera: TTakePhotoFromCameraAction
+      Category = 'Media Library'
+      OnDidFinishTaking = actFotoCameraDidFinishTaking
+    end
+    object ShowShareSheetAction1: TShowShareSheetAction
+      Category = 'Media Library'
+    end
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 60
+    Top = 397
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'DESCRICAO'
+      Control = edNome
+      Track = False
+    end
+    object LinkControlToField3: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = frmCategorias.BindSourceDB2
+      FieldName = 'CATEGORIA'
+      Control = edCategoria
+      Track = False
+    end
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      Control = lsvItens
+      FillExpressions = <
+        item
+          SourceMemberName = 'IMAGEM'
+          ControlMemberName = 'Bitmap'
+        end
+        item
+          SourceMemberName = 'DESCRICAO'
+          ControlMemberName = 'Detail1'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkPropertyToFieldBitmap: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'IMAGEM'
+      Component = imgFoto
+      ComponentProperty = 'Bitmap'
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = DM.FDItens
+    ScopeMappings = <>
+    Left = 176
+    Top = 384
+  end
+end

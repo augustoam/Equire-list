@@ -1,0 +1,65 @@
+inherited frmCategorias_SmXhdpiPh: TfrmCategorias_SmXhdpiPh
+  ClientHeight = 375
+  ClientWidth = 250
+  DesignerMasterStyle = 3
+  inherited lyCategorias: TLayout
+    Size.Width = 250.000000000000000000
+    Size.Height = 375.000000000000000000
+    inherited ToolBar: TToolBar
+      Size.Width = 250.000000000000000000
+      inherited lbToolBar: TLabel
+        Size.Width = 250.000000000000000000
+      end
+      inherited Image1: TImage
+        MultiResBitmap.Height = 78
+        MultiResBitmap.Width = 637
+      end
+      inherited spbNovoRegistro: TSpeedButton
+        Position.X = 203.000000000000000000
+      end
+      inherited spbLimparLista: TSpeedButton
+        Position.X = 162.000000000000000000
+      end
+    end
+    inherited tbcGeral: TTabControl
+      Size.Width = 250.000000000000000000
+      Size.Height = 327.000000000000000000
+      inherited TabItemGeral0: TTabItem
+        Size.Width = 125.000000000000000000
+        inherited lsvListas_Itens: TListView
+          Size.Width = 250.000000000000000000
+          Size.Height = 278.000000000000000000
+          inherited lbListaVazia: TLabel
+            Size.Width = 250.000000000000000000
+            Size.Height = 278.000000000000000000
+          end
+        end
+      end
+      inherited TabItemGeral1: TTabItem
+        Size.Width = 125.000000000000000000
+        inherited tbcCategoriasItens: TTabControl
+          Size.Width = 250.000000000000000000
+          Size.Height = 278.000000000000000000
+          inherited TabItemCategorias: TTabItem
+            Size.Width = 125.000000000000000000
+            inherited lsvCategorias: TListView
+              Size.Width = 250.000000000000000000
+              Size.Height = 229.000000000000000000
+            end
+          end
+          inherited TabItemItens: TTabItem
+            Size.Width = 125.000000000000000000
+            inherited lsvItens: TListView
+              Size.Width = 205.000000000000000000
+              Size.Height = 229.000000000000000000
+            end
+            inherited lsvItensFavoritos: TListView
+              Position.X = 205.000000000000000000
+              Size.Height = 229.000000000000000000
+            end
+          end
+        end
+      end
+    end
+  end
+end

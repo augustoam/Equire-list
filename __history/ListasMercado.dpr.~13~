@@ -1,0 +1,18 @@
+program ListasMercado;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  uMain in 'uMain.pas' {frmMain},
+  uCategorias in 'uCategorias.pas' {frmCategorias},
+  uListas in 'uListas.pas' {frmListas},
+  uDM in 'uDM.pas' {frmDM: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.Run;
+end.

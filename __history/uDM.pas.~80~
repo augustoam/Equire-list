@@ -1,0 +1,173 @@
+unit uDM;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef,
+  FireDAC.Stan.ExprFuncs,
+  FireDAC.Stan.Param,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.FMXUI.Wait,
+  System.IOUtils,
+  FireDAC.Comp.UI,
+  Data.DB,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+  System.ImageList,
+  FMX.ImgList,
+  FMX.Platform,
+  FMX.VirtualKeyboard;
+
+type
+  TDM = class(TDataModule)
+    FDConnection: TFDConnection;
+    FDCategoriasCrud: TFDQuery;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
+    FDListas_Base: TFDQuery;
+    FDListas_BaseID_LISTA: TIntegerField;
+    FDListas_BaseDESCRICAO: TStringField;
+    FDListas_BaseIMAGEM: TBlobField;
+    FDListas_Itens: TFDQuery;
+    FDListas_Usuarios: TFDQuery;
+    FDListas_ItensID_LISTA_ITENS: TIntegerField;
+    FDListas_ItensID_ITEM: TIntegerField;
+    FDListas_ItensID_CATEGORIA: TIntegerField;
+    FDListas_ItensID_LISTA_CRIADA: TIntegerField;
+    FDListas_ItensDESCRICAO: TStringField;
+    FDListas_ItensCATEGORIA: TStringField;
+    FDListas_UsuariosID_LISTA: TIntegerField;
+    FDListas_UsuariosID_LISTA_BASE: TIntegerField;
+    FDListas_UsuariosDESCRICAO: TStringField;
+    FDListas_UsuariosIMAGEM: TBlobField;
+    FDListas_ItensQTD_UNMED: TStringField;
+    FDListas_UsuariosOBSERVACAO: TStringField;
+    FDListas_ItensITEM_NA_LISTA: TIntegerField;
+    FDItensCrud: TFDQuery;
+    FDItensCrudID_ITEM: TIntegerField;
+    FDItensCrudDESCRICAO: TStringField;
+    FDItensCrudIMAGEM: TBlobField;
+    FDItensCrudID_CATEGORIA: TIntegerField;
+    FDListas_ItensCrud: TFDQuery;
+    FDListas_ItensCrudID_LISTA_ITENS: TIntegerField;
+    FDListas_ItensCrudID_ITEM: TIntegerField;
+    FDListas_ItensCrudID_CATEGORIA: TIntegerField;
+    FDListas_ItensCrudID_LISTA_CRIADA: TIntegerField;
+    FDListas_ItensCrudQTD_UNMED: TStringField;
+    FDListas_ItensCrudITEM_NA_LISTA: TIntegerField;
+    FDItens: TFDQuery;
+    FDItensITEM_DA_LISTA: TWideStringField;
+    FDItensID_ITEM: TIntegerField;
+    FDItensDESCRICAO: TStringField;
+    FDItensIMAGEM: TBlobField;
+    FDItensID_CATEGORIA: TIntegerField;
+    FDCategorias: TFDQuery;
+    FDCategoriasID_CATEGORIA: TIntegerField;
+    FDCategoriasCATEGORIA: TStringField;
+    FDCategoriasIMAGEM: TBlobField;
+    FDCategoriasCrudID_CATEGORIA: TIntegerField;
+    FDCategoriasCrudCATEGORIA: TStringField;
+    FDCategoriasCrudIMAGEM: TBlobField;
+    FDItensFAVORITO: TIntegerField;
+    FDItensIMG_FAVORITO: TBlobField;
+    FDItensCrudIMG_FAVORITO: TBlobField;
+    FDItensCrudFAVORITO: TIntegerField;
+    FDListas_UsuariosCrud: TFDQuery;
+    FDListas_UsuariosCrudID_LISTA: TIntegerField;
+    FDListas_UsuariosCrudID_LISTA_BASE: TIntegerField;
+    FDListas_UsuariosCrudOBSERVACAO: TStringField;
+    FDListas_Itensrowid: TLargeintField;
+    FDListas_ItensCrudrowid: TLargeintField;
+    FDAuxiliar: TFDQuery;
+    FDUsuarios: TFDQuery;
+    FDUsuariosNOME: TStringField;
+    FDUsuariosPRIMEIRO_CONT: TIntegerField;
+    ImageList: TImageList;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure FDCategoriasCrudBeforeInsert(DataSet: TDataSet);
+    procedure FDListas_UsuariosBeforeInsert(DataSet: TDataSet);
+    procedure FDListas_ItensCrudBeforeInsert(DataSet: TDataSet);
+    procedure FDItensCrudBeforeInsert(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    FProxListaItem, FProxItem, FProxCategoria, FProxListaUsuario: Integer;
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDM.DataModuleCreate(Sender: TObject);
+begin
+  with FDConnection do
+  begin
+    {$IF DEFINED(IOS) OR DEFINED(ANDROID)}
+      Params.Values['DriverID'] := 'SQLite';
+      Params.Values['OpenMode'] := 'ReadWrite';
+      try
+        Params.Values['Database'] := GetHomePath + PathDelim + 'mercado.db3';
+        Connected := True;
+      except on E: Exception do
+        begin
+          //ShowException(E.Message);
+        end;
+      end;
+    {$ELSE}
+      try
+        Params.Values['Database'] := 'C:\Projetos\Mercado\bd\mercado.db3';
+        Connected := True;
+      except on E: Exception do
+        begin
+          //ShowException(E.Message);
+        end;
+      end;
+    {$ENDIF}
+  end;
+end;
+
+procedure TDM.FDCategoriasCrudBeforeInsert(DataSet: TDataSet);
+begin
+  FDCategoriasCrud.Last;
+  FProxCategoria := FDCategoriasCrudID_CATEGORIA.AsInteger + 1;
+end;
+
+procedure TDM.FDItensCrudBeforeInsert(DataSet: TDataSet);
+begin
+  FDItensCrud.Last;
+  FProxItem := FDItensCrudID_ITEM.AsInteger +1;
+end;
+
+procedure TDM.FDListas_ItensCrudBeforeInsert(DataSet: TDataSet);
+begin
+  FDListas_ItensCrud.Last;
+  FProxListaItem := FDListas_ItensCrudID_LISTA_ITENS.AsInteger + 1;
+end;
+
+procedure TDM.FDListas_UsuariosBeforeInsert(DataSet: TDataSet);
+begin
+  FDListas_Usuarios.Last;
+  FProxListaUsuario := FDListas_UsuariosID_LISTA.AsInteger +1;
+end;
+
+end.

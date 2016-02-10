@@ -1,0 +1,47 @@
+inherited frmMain_LgXhdpiPh: TfrmMain_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited TabControl: TTabControl
+    OnGesture = nil
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+    inherited TabItemListas: TTabItem
+      inherited ToolBar1: TToolBar
+        Size.Width = 450.000000000000000000
+        inherited lblTitle1: TLabel
+          Size.Width = 450.000000000000000000
+        end
+      end
+      inherited lsvListas: TListView
+        Size.Width = 450.000000000000000000
+        Size.Height = 647.000000000000000000
+        inherited spbNovaLista: TSpeedButton
+          Position.X = 170.000000000000000000
+          Position.Y = 404.000000000000000000
+        end
+      end
+    end
+    inherited TabItemCategorias: TTabItem
+      inherited tbCategorias: TToolBar [0]
+        Size.Width = 450.000000000000000000
+        inherited lbCategorias: TLabel
+          Size.Width = 450.000000000000000000
+        end
+        inherited btnNextCategorias: TSpeedButton
+          Position.X = 397.000000000000000000
+        end
+      end
+      inherited lsvCategorias: TListView [1]
+      end
+    end
+    inherited TabItemItens: TTabItem
+      inherited tbItens: TToolBar
+        Size.Width = 450.000000000000000000
+        inherited lbItens: TLabel
+          Size.Width = 450.000000000000000000
+        end
+      end
+    end
+  end
+end
